@@ -1,1 +1,74 @@
-<p>contact works!</p>
+<!-- Formulario reactivo -->
+
+<div class="container">
+    <form [formGroup]="formularioContacto" (ngSubmit)="enviar()">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input [ngClass]="{'is-invalid': hasErrors('nombre', 'required') || hasErrors('nombre', 'minlength')}"
+                type="text" class="form-control" id="nombre" formControlName="nombre">
+            <div class="text-danger" *ngIf="hasErrors('nombre', 'required')">
+                Por favor ingrese su nombre.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido:</label>
+            <input [ngClass]="{'is-invalid': hasErrors('apellido', 'required') || hasErrors('apellido', 'minlength')}"
+                type="text" class="form-control" id="apellido" formControlName="apellido">
+            <div class="text-danger" *ngIf="hasErrors('apellido', 'required')">
+                Por favor ingrese su apellido.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="tipoDni" class="form-label">Tipo documento:</label>
+            <select class="form-select" id="tipoDni" formControlName="tipoDni">
+                <option value="DNI">DNI</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="Cédula">Cédula</option>
+            </select>
+            <div class="text-danger" *ngIf="hasErrors('tipoDni', 'required')">
+                Por favor seleccione su tipo de documento.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="documento" class="form-label">{{tipoDni}}:</label>
+            <input [ngClass]="{'is-invalid': hasErrors('documento', 'required') || hasErrors('documento', 'minlength')}"
+                type="text" class="form-control" id="documento" formControlName="documento">
+            <div class="text-danger" *ngIf="hasErrors('documento', 'required')">
+                Por favor ingrese su documento.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input [ngClass]="{'is-invalid': hasErrors('email', 'required') || hasErrors('email', 'email')}"
+                type="email" class="form-control" id="email" formControlName="email">
+            <div class="text-danger" *ngIf="hasErrors('email', 'email')">
+                Por favor ingrese un email en formato válido.
+            </div>
+            <div class="text-danger" *ngIf="hasErrors('email', 'required')">
+                Por favor ingrese su email.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+
+<!-- Formulario de plantilla -->
+<!-- <div class="container">
+    <form #miFormulario="ngForm" (ngSubmit)="enviar()">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="usuario.nombre" [ngModelOptions]="{standalone: true}" required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="usuario.email" [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div> -->
