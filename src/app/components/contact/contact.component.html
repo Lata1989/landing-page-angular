@@ -29,14 +29,8 @@
                 Por favor seleccione su tipo de documento.
             </div>
         </div>
-
-        <div class="mb-3">
-            <label for="documento" class="form-label">{{tipoDni}}:</label>
-            <input [ngClass]="{'is-invalid': hasErrors('documento', 'required') || hasErrors('documento', 'minlength')}"
-                type="text" class="form-control" id="documento" formControlName="documento">
-            <div class="text-danger" *ngIf="hasErrors('documento', 'required')">
-                Por favor ingrese su documento.
-            </div>
+        <div class="mb-3" *ngIf="mostrarDNI">
+            <app-dni [tipoDni]="tipoDni"></app-dni>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>

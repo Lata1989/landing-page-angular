@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,11 +6,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
 
 
   formularioContacto: FormGroup;
   tipoDni: string = 'DNI';
+  mostrarDNI: boolean = false;
   /*
   usuarioActivo: any = {
     nombre: 'Latita',
@@ -25,10 +26,10 @@ export class ContactComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       apellido: [''],
       tipoDni: [''],
-      documento: ['', [Validators.required, Validators.minLength(8)]],
       email: ['', [Validators.email, Validators.required]]
     })
   }
+
   ngOnInit(): void {
 
     /*
@@ -51,9 +52,16 @@ export class ContactComponent implements OnInit {
     // this.formularioContacto.valueChanges.subscribe( valor => {
     //   console.log(valor);
     // })
+    this.formularioContacto.get('nombre')?.setValue('Latita');
+    this.formularioContacto.get('nombre')?.disable();
     this.formularioContacto.get('tipoDni')?.valueChanges.subscribe( value =>{
+      this.mostrarDNI = value != '';
       this.tipoDni = value;
     })
+  }
+
+  ngOnDestroy(): void {
+    console.log('El componente hizo catapunchis!')
   }
 
   enviar() {

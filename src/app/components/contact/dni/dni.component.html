@@ -1,0 +1,8 @@
+<form [formGroup]="formularioDocumento">
+    <label for="documento" class="form-label">{{variableNueva}}:</label>
+    <input [ngClass]="{'is-invalid': hasErrors('documento', 'required') || hasErrors('documento', 'minlength')}"
+        type="text" class="form-control" id="documento" formControlName="documento">
+    <div class="text-danger" *ngIf="hasErrors('documento', 'required')">
+        Por favor ingrese su documento.
+    </div>
+</form>

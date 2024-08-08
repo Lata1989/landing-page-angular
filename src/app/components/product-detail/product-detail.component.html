@@ -1,8 +1,18 @@
-<ng-container *ngIf="!loading">
-    <h4>Nombre del producto: {{product?.name}}</h4>
-    <h5 [ngStyle]="{'color': color}">Precio del producto: {{product?.price | currency}}</h5>
-    <h5 *ngIf="product?.description">Descripcion del producto: {{product?.description}}</h5>
-</ng-container>
-<ng-container *ngIf="loading">
-    <i>Cargando información</i>
-</ng-container>
+<div class="center">
+    <ng-container *ngIf="!loading">
+        <div class="card" style="width: 30rem;">
+            <img src="{{product?.image}}" class="card-img-top" alt="{{product?.title}}">
+            <div class="card-body">
+                <h5 class="card-title">{{product?.title}}</h5>
+                <h6>{{product?.price | currency}}</h6>
+                <p class="card-text">{{product?.description}}</p>
+            </div>
+        </div>
+        <!-- <h4>Nombre del producto: {{product?.title}}</h4>
+        <h5 [ngStyle]="{'color': color}">Precio del producto: {{product?.price | currency}}</h5>
+        <h5 *ngIf="product?.description">Descripcion del producto: {{product?.description}}</h5> -->
+    </ng-container>
+    <ng-container *ngIf="loading">
+        <i>Cargando información...</i>
+    </ng-container>
+</div>
